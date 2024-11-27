@@ -37,21 +37,22 @@ cards = [...document.querySelectorAll(".card")];
 cards.forEach(card => {
     card.addEventListener("click", function(event){
         
-        //increase numberOfMove
-        numberOfMove++;
-        const movementCounter = document.querySelector(".movement-counter strong");
-        movementCounter.textContent = `${numberOfMove}`;
         //get clickedCard div:
         const clickedCard = card;
-        const dataIndexOfClickedCard = parseInt(card.getAttribute("data-index"));
+        const dataPositionOfClickedCard = parseInt(card.getAttribute("data-position"));
         //get hiddenCard div:
         const hiddenCard = cards.find(card => card.classList.contains("hidden"));
-        const dataIndexOfHiddenCard = parseInt(hiddenCard.getAttribute("data-index"));
+        const dataPositionOfHiddenCard = parseInt(hiddenCard.getAttribute("data-position"));
 
-        const difference = dataIndexOfClickedCard - dataIndexOfHiddenCard;
-        const cardsCanMove = objectMove[dataIndexOfHiddenCard];
+        const difference = dataPositionOfClickedCard - dataPositionOfHiddenCard;
+        const cardsCanMove = objectMove[dataPositionOfHiddenCard];
 
-        if(cardsCanMove.includes(dataIndexOfClickedCard)){
+        if(cardsCanMove.includes(dataPositionOfClickedCard)){
+
+            //increase numberOfMove
+            numberOfMove++;
+            const movementCounter = document.querySelector(".movement-counter strong");
+            movementCounter.textContent = `${numberOfMove}`;
 
             if(difference == -1){
 
@@ -71,9 +72,9 @@ cards.forEach(card => {
 
             }
 
-            //swap dataIndexOfClickedCard && dataIndexOfHiddenCard :
-            clickedCard.setAttribute("data-index", dataIndexOfHiddenCard);
-            hiddenCard.setAttribute("data-index", dataIndexOfClickedCard); 
+            //swap dataPositionOfClickedCard && dataPositionOfHiddenCard :
+            clickedCard.setAttribute("data-position", dataPositionOfHiddenCard);
+            hiddenCard.setAttribute("data-position", dataPositionOfClickedCard); 
         }
     })
 })
@@ -188,7 +189,7 @@ let countDown = setInterval(() => {
 
         cards.forEach(card => {
 
-            const dataIndex = parseInt(card.getAttribute("data-index"));
+            const dataIndex = parseInt(card.getAttribute("data-position"));
             const textContent = parseInt(card.textContent);
 
             if(textContent != 0 && textContent - 1 == dataIndex){
