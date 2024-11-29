@@ -60,7 +60,6 @@ cards.forEach(card => {
                 translate_Card(clickedCard, "X", 100);
                 //translate hiddenCard to Left
                 translate_Card(hiddenCard, "X", -100);
-
                 
             }else if(difference == 1){
 
