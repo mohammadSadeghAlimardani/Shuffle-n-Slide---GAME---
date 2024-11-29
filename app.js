@@ -56,19 +56,32 @@ cards.forEach(card => {
 
             if(difference == -1){
 
-                translate_Card(clickedCard, hiddenCard, difference);
+                //translate clickedCard to Right
+                translate_Card(clickedCard, "X", 100);
+                //translate hiddenCard to Left
+                translate_Card(hiddenCard, "X", -100);
+
                 
             }else if(difference == 1){
 
-                translate_Card(clickedCard, hiddenCard, difference);
+                //translate clickedCard to Left
+                translate_Card(clickedCard, "X", -100);
+                //translate hiddenCard to Right
+                translate_Card(hiddenCard, "X", 100);
     
             }else if(difference == 3){
 
-                translate_Card(clickedCard, hiddenCard, difference);
+                //translate clickedCard to Up
+                translate_Card(clickedCard, "Y", -100);
+                //translate hiddenCard to Down
+                translate_Card(hiddenCard, "Y", 100);
 
             }else if(difference == -3){
 
-                translate_Card(clickedCard, hiddenCard, difference);
+                //translate clickedCard to Down
+                translate_Card(clickedCard, "Y", 100);
+                //translate hiddenCard to Up
+                translate_Card(hiddenCard, "Y", -100);
 
             }
 
@@ -79,73 +92,11 @@ cards.forEach(card => {
     })
 })
 
-
-function translate_Card(clickedCard, hiddenCard, difference){
-
-    if(difference == -1){
-
-        //Move clickedCard to Right
-        if(clickedCard.style.transform){          //if clickedCard has already moved 
-            clickedCard.style.transform = `${clickedCard.style.transform} translateX(100%)`;
-        }else{
-            clickedCard.style.transform = `translateX(100%)`;
-        }
-
-        //Move hiddenCard to Left
-        if(hiddenCard.style.transform){
-            hiddenCard.style.transform = `${hiddenCard.style.transform} translateX(-100%)`;
-        }else{
-            hiddenCard.style.transform = `translateX(-100%)`;
-        }
-
-    }else if(difference == 1){
-
-        //Move clickedCard to Left
-        if(clickedCard.style.transform){          //if clickedCard has already moved 
-            clickedCard.style.transform = `${clickedCard.style.transform} translateX(-100%)`;
-        }else{
-            clickedCard.style.transform = `translateX(-100%)`;
-        }
-
-        //Move hiddenCard to Right
-        if(hiddenCard.style.transform){
-            hiddenCard.style.transform = `${hiddenCard.style.transform} translateX(100%)`;
-        }else{
-            hiddenCard.style.transform = `translateX(100%)`;
-        }
-
-    }else if(difference == 3){
-
-        //Move clickedCard to Up
-        if(clickedCard.style.transform){          //if clickedCard has already moved 
-            clickedCard.style.transform = `${clickedCard.style.transform} translateY(-100%)`;
-        }else{
-            clickedCard.style.transform = `translateY(-100%)`;
-        }
-
-        //Move hiddenCard to Down
-        if(hiddenCard.style.transform){
-            hiddenCard.style.transform = `${hiddenCard.style.transform} translateY(100%)`;
-        }else{
-            hiddenCard.style.transform = `translateY(100%)`;
-        }
-
-    }else if(difference == -3){
-
-        //Move clickedCard to Down
-        if(clickedCard.style.transform){          //if clickedCard has already moved 
-            clickedCard.style.transform = `${clickedCard.style.transform} translateY(100%)`;
-        }else{
-            clickedCard.style.transform = `translateY(100%)`;
-        }
-
-        //Move hiddenCard to Up
-        if(hiddenCard.style.transform){
-            hiddenCard.style.transform = `${hiddenCard.style.transform} translateY(-100%)`;
-        }else{
-            hiddenCard.style.transform = `translateY(-100%)`;
-        }
-
+function translate_Card(card, direction, percentage){
+    if(card.style.transform){          //if card(clickedCard or hiddenCard) has already moved 
+        card.style.transform = `${card.style.transform} translate${direction}(${percentage}%)`;
+    }else{
+        card.style.transform = `translate${direction}(${percentage}%)`;
     }
 }
 
