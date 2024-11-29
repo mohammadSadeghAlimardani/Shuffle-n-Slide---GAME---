@@ -100,6 +100,7 @@ function translate_Card(card, direction, percentage){
 }
 
 //stopWatch
+let elapsedTime = 0;
 let needTime = 90;         //1 minutes and 30 seconds
 let minutes = parseInt(needTime / 60);
 let seconds = needTime - (minutes * 60);
@@ -107,6 +108,7 @@ let stopWatchDOM = document.querySelector(".stopWatch span");
 let countDown = setInterval(() => {
     
     seconds--;
+    elapsedTime++;
     if(seconds == -1){
         minutes--;
         seconds = 59;
@@ -151,7 +153,7 @@ let countDown = setInterval(() => {
             clearInterval(countDown);
 
             const victoryMessageTitle = document.querySelector(".victory-message h2");
-            victoryMessageTitle.textContent = `You Did it in ${needTime - ((minutes * 60) + seconds)} Seconds, with ${numberOfMove} moves`;
+            victoryMessageTitle.textContent = `You Did it in ${elapsedTime} Seconds, with ${numberOfMove} moves`;
 
             const victoryMessage = document.querySelector(".victory-message");
             victoryMessage.classList.add("show");
