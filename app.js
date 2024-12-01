@@ -125,7 +125,7 @@ let countDown = setInterval(() => {
         const gameOverMessage = document.querySelector(".gameOver-message");
         gameOverMessage.classList.add("show");
 
-        const gameOverMusic = document.querySelector(".gameOver-music");
+        const gameOverMusic = document.querySelector("audio.gameOver-music");
         gameOverMusic.play();
 
     }else{
@@ -141,10 +141,10 @@ let countDown = setInterval(() => {
 
         cards.forEach(card => {
 
-            const dataIndex = parseInt(card.getAttribute("data-position"));
+            const dataPosition = parseInt(card.getAttribute("data-position"));
             const textContent = parseInt(card.textContent);
 
-            if(textContent != 0 && textContent - 1 == dataIndex){
+            if(textContent != 0 && textContent - 1 == dataPosition){
                 correctCardPosition++;
             }   
         })
